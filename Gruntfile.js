@@ -343,6 +343,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
+      'mongodb',
       'watch'
     ]);
   });
@@ -365,6 +366,33 @@ module.exports = function (grunt) {
       'connect:test',
       'mocha'
     ]);
+  });
+
+  grunt.registerTask('mongodb', function(target) {
+    this.async(); 
+    var mongoose = require('mongoose');
+    mongoose.connect('rick:BarBar@ds048537.mongolab.com:48537/prototyping-sucks');
+ 
+    var db = mongoose.connection;
+ 
+    db.on('error', function (err) {
+      grunt.log.err('connection error', err);
+    });
+
+    db.once('open', function () {
+      grunt.log.ok('connected.');
+      
+      var kittySchema = mongoose.Schema({
+        name: String
+      })
+
+      var Kitten = mongoose.model('Kitten', kittySchema)
+
+      var fluffy = new Kitten({ name: 'fluffy' });
+        fluffy.save(function (err, fluffy) {
+        if (err) return grunt.log.err(err);
+      });
+    });
   });
 
   grunt.registerTask('build', [
