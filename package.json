@@ -32,5 +32,9 @@
   "dependencies": {
     "mongodb": "^1.4.32",
     "mongojs": "^0.18.2"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "postinstall": "bower install && grunt"
   }
 }
