@@ -35,6 +35,6 @@
   },
   "scripts": {
     "start": "node app.js",
-    "postinstall": "bower install && grunt"
+    "postinstall": "bower install && grunt serve"
   }
 }
