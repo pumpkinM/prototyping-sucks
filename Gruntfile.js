@@ -395,7 +395,7 @@ module.exports = function (grunt) {
     });
   });
   
-  grunt.registerTask('heroku:production', ['build']);
+  grunt.registerTask('heroku:production', ['serve']);
 
   grunt.registerTask('build', [
     'clean:dist',
